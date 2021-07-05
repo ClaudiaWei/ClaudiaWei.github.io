@@ -11,7 +11,7 @@
   <meta name="description" content="">
   <script id="hexo-configurations">
   var CONFIG = {
-    root: '/',
+    root: '/projects/',
     theme: 'lx',
     version: '0.3.9',
     localsearch:{
@@ -25,7 +25,7 @@
   };
 </script>
 
-  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="shortcut icon" href="/projects/favicon.ico">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/css/main.min.css">
   <style type="text/css">
     pre,
@@ -57,7 +57,15 @@
 	     });
 	}); 
 	</script>
-  
+  <!--Google_Analytics-->
+<script async src="https://www.googletagmanager.com/gtag/js?id=[object Object]"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '[object Object]');
+</script>
+
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Fira Code:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
 <meta name="generator" content="Hexo 5.4.0"></head>
@@ -68,7 +76,7 @@
 <div id="lx-aside" style="background-image: url(//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/images/cover.jpeg)">
   <div class="overlay">
   <div class="featured">
-    <div class="avatar"><a href="/"><img src="/images/avatar.jpeg"></a></div>
+    <div class="avatar"><a href="/projects/"><img src="/projects/images/avatar.jpg"></a></div>
     <span>Claudia Wei</span>
     <h1>Claudia-Tech Blog</h1>
     
@@ -84,17 +92,20 @@
   <div class="lx-post">
   <h2 class="pagehead">Archives</h2>
     <div class="lx-entry padding"><div>
+    <span class="lx-post-detail">2021-06-30</span>
+    <h2 class="title"><a href="/projects/2021/06/30/AWS-API-Gateway-%E7%B5%90%E5%90%88-Lambda/">AWS API Gateway 結合 Lambda</a></h2>
+    <p></p></div></div><div class="lx-entry padding"><div>
     <span class="lx-post-detail">2021-06-27</span>
-    <h2 class="title"><a href="/2021/06/27/IAC%E7%B5%90%E5%90%88CICD%E4%B9%8B%E6%97%85/">IAC結合CICD之旅</a></h2>
-    <p><i class="fa fa-tag"></i><a class="tag-none-link" href="/tags/%E2%80%93-terraform-%E2%80%93-bitbucket-%E2%80%93-jenkins/" rel="tag">– terraform – bitbucket – jenkins</a></p></div></div><div class="lx-entry padding"><div>
+    <h2 class="title"><a href="/projects/2021/06/27/IAC%E7%B5%90%E5%90%88CICD%E4%B9%8B%E6%97%85/">IAC結合CICD之旅</a></h2>
+    <p></p></div></div><div class="lx-entry padding"><div>
     <span class="lx-post-detail">2021-06-27</span>
-    <h2 class="title"><a href="/2021/06/27/hello-world/">Hello World</a></h2>
+    <h2 class="title"><a href="/projects/2021/06/27/hello-world/">Hello World</a></h2>
     <p></p></div></div>
 
 
 <footer>
   <div>
-  Copyright &copy; 2021.<a href="/">Claudia-Tech Blog</a><br>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme <a href="https://lx.js.org" target="_blank">Lx</a><br>
+  Copyright &copy; 2021.<a href="/projects/">Claudia-Tech Blog</a><br>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme <a href="https://lx.js.org" target="_blank">Lx</a><br>
   </div>
 </footer>
 
@@ -113,7 +124,7 @@
       <div class="col">
         <div class="row for-pic">
           <div class="profile-pic">
-            <a href="/"><img src="/images/avatar.jpeg" alt="Claudia Wei"/></a>
+            <a href="/projects/"><img src="/projects/images/avatar.jpg" alt="Claudia Wei"/></a>
           </div>
         </div>
         <div class="row for-name">
@@ -126,21 +137,13 @@
   <nav class="menu-container">
   <ul class="menu-items">
     <li><a href="/"><i class="fa fa-home fa-fw"></i>Home</a></li>
-    <li><a href="/archives/"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+    <li><a href="/projects/archives/"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+    <li class="has-sub"><span class="dropdown-heading">
+      <i class="fa fa-th-list fa-fw"></i>Categories</span>
+        
+    </li>
     
-    <li class="has-sub"><span class="dropdown-heading">
-      <i class="fa fa-bookmark fa-fw"></i>Pages</span>
-        <ul>
-          <li><a href="/guestbook/">Guestbook</a></li>
-        <li><a href="/about/">About</a></li>
-        </ul>
-    </li>
-    <li class="has-sub"><span class="dropdown-heading">
-      <i class="fa fa-link fa-fw"></i>Friends</span>
-        <ul>
-          <li> <a href="https://lx.js.org" target="_blank">Theme-Lx</a></li>
-        </ul>
-    </li>
+    
   </ul>
   </nav>
 </div>
