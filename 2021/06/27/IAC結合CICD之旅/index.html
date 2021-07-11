@@ -99,7 +99,7 @@
 <ul>
 <li>Terraform 是個管理雲端基礎架構的工具, binary file, 使用HCL語言, 底層是Golang</li>
 <li>Terraform 支援多個平台, 如：AWS, Azure, GCP, Atlas…等</li>
-<li>於<a target="_blank" rel="noopener" href="https://www.terraform.io/downloads.html">此</a>下載解壓縮, 放入指定路徑即可使用</li>
+<li>於<a target="_blank" rel="noopener" href="https://www.terraform.io/downloads.html">此連結</a>下載解壓縮, 放入指定路徑即可使用</li>
 </ul>
 <h2 id="Terraform-特點"><a href="#Terraform-特點" class="headerlink" title="Terraform 特點"></a>Terraform 特點</h2><ul>
 <li>Infrastructure As Code: 使用程式部署架構</li>
@@ -115,24 +115,15 @@
 <li><p>tf：執行架構的內容, 存取變數</p>
 </li>
 <li><p>tfvars：存取變數(根據環境)</p>
-<p>  改變數</p>
-<ol>
-<li><p>terrafrom apply -var=”instanceTenancy=abc”</p>
-</li>
-<li><p>TF_VAR_instanceTenancy=abc terrafrom apply</p>
-</li>
-<li><p>terrafrom apply -var-file=”staging/my.tfvars”</p>
-</li>
-</ol>
-</li>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">改變數的方法可以使用以下三種：</span><br><span class="line">1. terrafrom apply -var=&quot;instanceTenancy=abc&quot;</span><br><span class="line">2. TF_VAR_instanceTenancy=abc terrafrom apply</span><br><span class="line">3. terrafrom apply -var-file=&quot;staging/my.tfvars&quot;</span><br></pre></td></tr></table></figure></li>
 <li><p>tfstate（執行terraform init）：terraform 管理的 resource  (存在s3)</p>
-<p>  由於 Terraform 預設將所有創建的雲端資源狀態存成 terraform.tfstate 的檔案, 當有更動的時候會去這裡讀取狀態, 然而當多人合作時, 不同人電腦上的狀態檔是會不一致的, 因此 Terraform 提供了 Remote State 的機制, 讓 state 檔案統一放在一個地方。</p>
+<p>  由於 terraform 預設將所有創建的雲端資源狀態存成 terraform.tfstate 的檔案, 當有更動的時候會去這裡讀取狀態, 然而當多人合作時, 不同人電腦上的狀態檔是會不一致的, 因此 terraform 提供了 remote state 的機制, 讓 state 檔案統一放在一個地方。</p>
 </li>
 <li><p>resource vs module vs data</p>
 <ul>
 <li><p>resource:一般常用</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">resource 雲端資源名稱 自定義的名稱 &#123;</span><br><span class="line"></span><br><span class="line">屬性 = 值</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>module: 封裝資源（別人已經寫好的一些架構 例如vpc 就不需要去重複寫resource</p>
+<li><p>module: 封裝資源（別人已經寫好的一些架構,例如vpc,就不需要去重複寫resource</p>
 </li>
 <li><p>data: 用於查找既有資源</p>
 </li>
@@ -142,11 +133,11 @@
 <h2 id="Terraform-執行步驟"><a href="#Terraform-執行步驟" class="headerlink" title="Terraform 執行步驟"></a>Terraform 執行步驟</h2><ul>
 <li><p><strong>terraform init</strong></p>
 <p>  在這個指令中, Terraform 會去下載需要的套件, 像是 AWS plugin</p>
-<p>  <img src=""></p>
+<p>  <img src="/./public/images/terraform/terraform-init.png" alt="terraform init"></p>
 </li>
 <li><p><strong>terraform validate</strong></p>
 <p>  檢查是否存在語法錯誤</p>
-<p>  <img src=""></p>
+<p>  <img src="/./public/images/terraform/terraform-validate.png" alt="terrafrom validate"></p>
 </li>
 <li><p><strong>terraform plan -out xxx.plan</strong></p>
 <p>  可以讓你在實際執行之前觀察 Terraform 將做哪些哪些改變, 這是為了防止修改到不應該修改的東西, 或是有不是預期的結果</p>
@@ -154,25 +145,23 @@
 <p>  (前面符號的意義)：+/-是指新增或刪減值, ~是指變更值</p>
 </li>
 </ul>
-<pre><code>![]()
+<pre><code>![terrafrom plan](/./public/images/terraform/terraform-plan.png)
 </code></pre>
 <ul>
 <li><p><strong>terraform apply xxx.plan</strong></p>
 <p>  實際去創建或改變雲端架構</p>
-<p>  <img src="/./public/images/terraform/terraform-apply.png" alt="terraform"></p>
+<p>  <img src="/./public/images/terraform/terraform-apply.png" alt="terraform apply"></p>
 </li>
 <li><p><strong>terraform show</strong></p>
 <p>  資源建立的內容</p>
-<p>  <img src=""></p>
-</li>
-<li><p><strong>terraform destroy</strong></p>
-<p>  清除所有的資源</p>
-<p>  <img src=""></p>
-<p>  <img src=""></p>
-<p>  <img src=""></p>
 </li>
 </ul>
-<h3 id="Terraform-with-Jenkins-and-Bitbucket"><a href="#Terraform-with-Jenkins-and-Bitbucket" class="headerlink" title="Terraform with Jenkins and Bitbucket"></a>Terraform with Jenkins and Bitbucket</h3><p>因專案上希望程式上版到bitbucket後可以自動執行terraform檔案部署雲端資源, 因此結合專案中已建立的Jenkins及Bitbucket Pipeline<br><img src=""></p>
+<ul>
+<li><p><strong>terraform destroy</strong></p>
+<p>  清除所有的資源</p>
+</li>
+</ul>
+<h3 id="Terraform-with-Jenkins-and-Bitbucket"><a href="#Terraform-with-Jenkins-and-Bitbucket" class="headerlink" title="Terraform with Jenkins and Bitbucket"></a>Terraform with Jenkins and Bitbucket</h3><p>因專案上希望程式上版到bitbucket後可以自動執行terraform檔案部署雲端資源, 因此結合專案中已建立的Jenkins及Bitbucket Pipeline</p>
 <ul>
 <li><p>使用Bitbucket plugin讓Bitbucket觸發Jenkins執行Pipeline</p>
 <ul>
@@ -180,33 +169,25 @@
 </li>
 <li><p>透過webhook request logs 可以看到詳細的資訊</p>
 </li>
-<li><p><strong>經驗分享</strong>: 開發過程中曾經出現status 503, 後來發現是因為VPC security group沒有設定到 <a target="_blank" rel="noopener" href="https://community.atlassian.com/t5/Bitbucket-questions/Bitbucket-Webhook-to-Jenkins-returns-503/qaq-p/971556">bitbucket ingress rule</a></p>
+<li><p><strong>經驗分享</strong>: 開發過程中曾經出現status 503, 後來發現是因為VPC security group沒有設定到 <a target="_blank" rel="noopener" href="https://community.atlassian.com/t5/Bitbucket-questions/Bitbucket-Webhook-to-Jenkins-returns-503/qaq-p/971556">bitbucket ingress rule</a><br><img src="/./public/images/terraform/webhook-log.png" alt="webhook log"></p>
 </li>
 <li><p>因此新增相關的<a target="_blank" rel="noopener" href="https://support.atlassian.com/bitbucket-cloud/docs/what-are-the-bitbucket-cloud-ip-addresses-i-should-use-to-configure-my-corporate-firewall/?_ga=2.43109797.1827149579.1546449118-56698773.1545853230&_gac=1.184167954.1546193145.EAIaIQobChMIwryjrpHI3wIVBC1pCh3gZAMOEAAYASAAEgK_YvD_BwE">IP addresses</a> in the alb security group</p>
-<p>  <img src=""></p>
 </li>
 </ul>
 </li>
 </ul>
 <ul>
-<li>Jenkins</li>
-</ul>
-<p>install terraform plugin, add bitbucket credential and aws credential</p>
+<li><p>Jenkins - 建立 Jenkins freestyle</p>
 <ul>
-<li><p>Crete Jenkins freestyle</p>
+<li><p>SCM: 增加repo URL 和 credentials<br><img src="/./public/images/terraform/repo-url.png" alt="repo url"></p>
 </li>
-<li><p>SCM: 增加repo URL 和 credentials</p>
-<p>  <img src=""></p>
+<li><p>建置觸發程序<br><img src="/./public/images/terraform/jenkins-process.png" alt="jenkins process"></p>
 </li>
-<li><p>建置觸發程序</p>
-<p>  <img src=""></p>
+<li><p>建置環境-Bindings: 使用<a target="_blank" rel="noopener" href="https://plugins.jenkins.io/credentials-binding/">Credentials Binding plugin</a></p>
 </li>
-<li><p>建置環境-Bindings</p>
-<p>  <a target="_blank" rel="noopener" href="https://plugins.jenkins.io/credentials-binding/">Credentials Binding plugin</a></p>
-<p>  <img src=""></p>
+<li><p>建置-執行shell<br><img src="/./public/images/terraform/shell.png" alt="shell"></p>
 </li>
-<li><p>建置-執行shell</p>
-<p>  <img src=""></p>
+</ul>
 </li>
 </ul>
 <h2 id="Terraform-with-Bitbucket-pipeline"><a href="#Terraform-with-Bitbucket-pipeline" class="headerlink" title="Terraform with Bitbucket pipeline"></a>Terraform with Bitbucket pipeline</h2><p>若沒有建置Jenkins, 也可以就Terraform結合Bitbucket pipeline實現自動部署</p>
@@ -214,14 +195,11 @@
 <p>Bitbucket pipeline 本身就有worker跑CICD流程, 是docker image 形式, 可以管理變數</p>
 </blockquote>
 <ul>
-<li><p>新增repo後, 建立Deployment (要註明deployment envi)</p>
-<p>  <img src=""></p>
+<li><p>新增repo後, 建立Deployment (要註明deployment envi)<br>  <img src="/./public/images/terraform/bitbucket-deploy.png" alt="bitbucket deployment"></p>
 </li>
-<li><p>設定test environment並且新增aws access key &amp; aws secret key</p>
-<p>  <img src=""></p>
+<li><p>設定test environment並且新增aws access key &amp; aws secret key<br>  <img src="/./public/images/terraform/test-env.png" alt="test environment"></p>
 </li>
-<li><p>push terraform file to bitbucket</p>
-<p>  <img src=""></p>
+<li><p>push terraform 檔案到 bitbucket<br>  <img src="/./public/images/terraform/push-file.png" alt="push file"></p>
 </li>
 </ul>
 <h3 id="參考資料："><a href="#參考資料：" class="headerlink" title="參考資料："></a>參考資料：</h3><ol>

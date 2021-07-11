@@ -104,9 +104,9 @@
 <li>ID Token 效期最長為一天</li>
 </ul>
 <h2 id="使用-API-Gateway-Authorizer-透過-Cognito-做使用者驗證"><a href="#使用-API-Gateway-Authorizer-透過-Cognito-做使用者驗證" class="headerlink" title="使用 API Gateway Authorizer 透過 Cognito 做使用者驗證"></a>使用 API Gateway <code>Authorizer</code> 透過 Cognito 做使用者驗證</h2><ul>
-<li>API Gateway 會先嘗試透過 Amazon Cognito 驗證發起人。這通常會透過發起人提供的 JWT 字符來執行。如果身份驗證成功，則會獨立評估資源政策，並需要明確允許。拒絕或既不允許也不拒絕會產生拒絕。操作如下圖：</li>
+<li>API Gateway 會先嘗試透過 Amazon Cognito 驗證發起人。這通常會透過發起人提供的 JWT 字符來執行。如果身份驗證成功，則會獨立評估資源政策，並需要明確允許。拒絕或既不允許也不拒絕會產生拒絕。<br><img src="/./public/images/cognito/cognito-api-gateway.png" alt="AWS Cognito"></li>
 </ul>
-<h2 id="運用AWS-SAM開發Lambda及API"><a href="#運用AWS-SAM開發Lambda及API" class="headerlink" title="運用AWS SAM開發Lambda及API"></a>運用AWS SAM開發Lambda及API</h2><p>SAM 是一種開放原始碼架構，可以用來建置無伺服器應用程式上的AWS。<br>可以透過sam local invoke及sam build在本機端測試所寫的程式邏輯是否正確, </p>
+<h2 id="運用AWS-SAM開發Lambda及API"><a href="#運用AWS-SAM開發Lambda及API" class="headerlink" title="運用AWS SAM開發Lambda及API"></a>運用AWS SAM開發Lambda及API</h2><p>SAM 是一種開放原始碼架構，可以用來建置無伺服器應用程式上的AWS。<br>可以透過sam local invoke及sam build在本機端測試所寫的程式邏輯是否正確</p>
 <h4 id="Step-1-Download-a-sample-application"><a href="#Step-1-Download-a-sample-application" class="headerlink" title="Step 1 - Download a sample application"></a>Step 1 - Download a sample application</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sam init</span><br></pre></td></tr></table></figure>
 <h4 id="Step-2-Build-your-application"><a href="#Step-2-Build-your-application" class="headerlink" title="Step 2 - Build your application"></a>Step 2 - Build your application</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd sam-app</span><br><span class="line">sam build</span><br></pre></td></tr></table></figure>
 <h4 id="Step-3-Deploy-your-application"><a href="#Step-3-Deploy-your-application" class="headerlink" title="Step 3 - Deploy your application"></a>Step 3 - Deploy your application</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sam deploy --guided</span><br></pre></td></tr></table></figure>
@@ -121,17 +121,15 @@
 </ol>
 <h2 id="結合Gitlab-CICD-Pipeline自動化部屬"><a href="#結合Gitlab-CICD-Pipeline自動化部屬" class="headerlink" title="結合Gitlab CICD Pipeline自動化部屬"></a>結合Gitlab CICD Pipeline自動化部屬</h2><p>在專案中與DevOps Engineer同事合作, 透過與Gitlab CICD Pipeline結合實現自動化部署程式</p>
 <ul>
-<li>將程式內容中 region_name, bucket_name, secrets_manager_name, lambda_function_name…等等改成參數化形式, 以利於後續部署不同環境只需要更改 samconfig檔案<blockquote>
-<p>於 app py檔中region_name = ‘us-west-2’改為region_name = os.env[‘REGION_NAME’], 並於template.yaml檔中新增, samdonfig.toml檔中新增相關的環境變數</p>
+<li>將程式內容中 region_name, bucket_name, secrets_manager_name, lambda_function_name…等等改成參數化形式, 以利於後續只需要修改 samconfig檔案即可部署不同環境<blockquote>
+<p>於 app py檔中region_name = ‘us-west-2’改為region_name = os.env[‘REGION_NAME’], 並於template.yaml及samdonfig.toml新增相關的環境變數</p>
 </blockquote>
 </li>
 </ul>
 <p>參考資料：</p>
 <ol>
-<li><p><a target="_blank" rel="noopener" href="https://medium.com/appgambit/aws-lambda-sending-slack-notification-1beccc070bd3">AWS Lambda — Sending Slack notification</a></p>
-</li>
-<li><p>其他如文中連結</p>
-</li>
+<li><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-accessing-resources-api-gateway-and-lambda.html">AWS Cognito Developer Guide</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/what-is-sam.html">AWS SAM Developer Guide</a></li>
 </ol>
 
       </div>
