@@ -95,9 +95,9 @@
 <li>使用API Gateway Authorizer透過Cognito實現身份認證</li>
 <li>運用AWS Sam開發API Gateway及Lambda</li>
 <li>運用Sam local invoke做地端測試及Sam deploy實現自動化部署</li>
-<li>運用Lambda串接Cloudwatch及Slack通知</li>
+<li>運用Lambda串接Cloudwatch及Slack通知<span id="more"></span>
+<h2 id="Cognito-認證"><a href="#Cognito-認證" class="headerlink" title="Cognito 認證"></a>Cognito 認證</h2>在專案中運用簡便的User Pool帳號密碼方式建立簡便的使用者登入認證</li>
 </ol>
-<h2 id="Cognito-認證"><a href="#Cognito-認證" class="headerlink" title="Cognito 認證"></a>Cognito 認證</h2><p>在專案中運用簡便的User Pool帳號密碼方式建立簡便的使用者登入認證</p>
 <ul>
 <li>建立以帳號密碼方式驗證的Cognito user</li>
 <li>建立完使用者後會需要強制更換密碼, 可透過以下指令執行<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aws cognito-idp admin-set-user-password --user-pool-id &lt;user_pool_id&gt; --username &lt;username&gt; --password &lt;pwd&gt; --permanent</span><br></pre></td></tr></table></figure></li>
