@@ -95,16 +95,16 @@
 <li>使用API Gateway Authorizer透過Cognito實現身份認證</li>
 <li>運用AWS Sam開發API Gateway及Lambda</li>
 <li>運用Sam local invoke做地端測試及Sam deploy實現自動化部署</li>
-<li>運用Lambda串接Cloudwatch及Slack通知<span id="more"></span>
-<h2 id="Cognito-認證"><a href="#Cognito-認證" class="headerlink" title="Cognito 認證"></a>Cognito 認證</h2>在專案中運用簡便的User Pool帳號密碼方式建立簡便的使用者登入認證</li>
 </ol>
+<span id="more"></span>
+<h2 id="Cognito-認證"><a href="#Cognito-認證" class="headerlink" title="Cognito 認證"></a>Cognito 認證</h2><p>在專案中運用簡便的User Pool帳號密碼方式建立簡便的使用者登入認證</p>
 <ul>
 <li>建立以帳號密碼方式驗證的Cognito user</li>
 <li>建立完使用者後會需要強制更換密碼, 可透過以下指令執行<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aws cognito-idp admin-set-user-password --user-pool-id &lt;user_pool_id&gt; --username &lt;username&gt; --password &lt;pwd&gt; --permanent</span><br></pre></td></tr></table></figure></li>
 <li>ID Token 效期最長為一天</li>
 </ul>
 <h2 id="使用-API-Gateway-Authorizer-透過-Cognito-做使用者驗證"><a href="#使用-API-Gateway-Authorizer-透過-Cognito-做使用者驗證" class="headerlink" title="使用 API Gateway Authorizer 透過 Cognito 做使用者驗證"></a>使用 API Gateway <code>Authorizer</code> 透過 Cognito 做使用者驗證</h2><ul>
-<li>API Gateway 會先嘗試透過 Amazon Cognito 驗證發起人。這通常會透過發起人提供的 JWT 字符來執行。如果身份驗證成功，則會獨立評估資源政策，並需要明確允許。拒絕或既不允許也不拒絕會產生拒絕。<br><img src="/./public/images/cognito/cognito-api-gateway.png" alt="AWS Cognito"></li>
+<li>API Gateway 會先嘗試透過 Amazon Cognito 驗證發起人。這通常會透過發起人提供的 JWT 字符來執行。如果身份驗證成功，則會獨立評估資源政策，並需要明確允許。拒絕或既不允許也不拒絕會產生拒絕。<br><img src="/./images/cognito/cognito-api-gateway.png" alt="AWS Cognito"></li>
 </ul>
 <h2 id="運用AWS-SAM開發Lambda及API"><a href="#運用AWS-SAM開發Lambda及API" class="headerlink" title="運用AWS SAM開發Lambda及API"></a>運用AWS SAM開發Lambda及API</h2><p>SAM 是一種開放原始碼架構，可以用來建置無伺服器應用程式上的AWS。<br>可以透過sam local invoke及sam build在本機端測試所寫的程式邏輯是否正確</p>
 <h4 id="Step-1-Download-a-sample-application"><a href="#Step-1-Download-a-sample-application" class="headerlink" title="Step 1 - Download a sample application"></a>Step 1 - Download a sample application</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sam init</span><br></pre></td></tr></table></figure>
