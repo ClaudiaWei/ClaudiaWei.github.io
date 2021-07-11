@@ -129,36 +129,6 @@
 </blockquote>
 </li>
 </ul>
-<h2 id="補充lambda警示提醒：CloudWatch-subscription-filters-lambda-slack-notification"><a href="#補充lambda警示提醒：CloudWatch-subscription-filters-lambda-slack-notification" class="headerlink" title="補充lambda警示提醒：CloudWatch subscription filters + lambda + slack notification"></a>補充lambda警示提醒：CloudWatch subscription filters + lambda + slack notification</h2><p>一般常用架構為透過SNS發出訊息, 在此範例省略SNS部分, 僅單純使用cloudwatch subscription filter結合slack webhook url</p>
-<ol>
-<li><p>建立’slack_notification’ lambda function </p>
-</li>
-<li><p>建立 cloudwatch subscription filter</p>
-<ul>
-<li><p>點選log groups, 選取要新增Subscription filters的log group(也就是要在slack上通知的lambda function)</p>
-</li>
-<li><p>點選Subscription filters, 選取Create Lambda subscription filter</p>
-</li>
-<li><p>Choose destination, Lambda function：選取lambda function(步驟1所建立的)</p>
-<ul>
-<li>Configure log format and filters, Log format：選取other, Subscription filter pattern：設定?REPORT ?ERROR (若要設定多個值則透過?區隔), Subscription filter name：定義name , Test pattern：可選取某一個log data去測試定義是否正確</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>建立 <a target="_blank" rel="noopener" href="https://cathaydtcloudteam.slack.com/apps/A0F7XDUAZ-incoming-webhooks">incoming webhook url</a></p>
-</li>
-<li><p>撰寫lambda functions:</p>
-<ol>
-<li>注意cloudwatch logs 需做base64 decode及unzip</li>
-<li>注意傳送內容須符合<a target="_blank" rel="noopener" href="https://api.slack.com/messaging/webhooks">特定格式</a>：{‘text’: ‘xxxx’}</li>
-<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/9733638/how-to-post-json-data-with-python-requests">python post json data with requests</a> 要用 json = xxx 而不是一般常用的 data = xxx</li>
-</ol>
-</li>
-</ol>
-<p>參考程式</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import pandas as pd</span><br></pre></td></tr></table></figure>
-
 <p>參考資料：</p>
 <ol>
 <li><p><a target="_blank" rel="noopener" href="https://medium.com/appgambit/aws-lambda-sending-slack-notification-1beccc070bd3">AWS Lambda — Sending Slack notification</a></p>
