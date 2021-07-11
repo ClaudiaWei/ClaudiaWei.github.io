@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="theme-color" content=#58b77a>
-  <title>Claudia-Tech Blog</title>
+  <title>運用AWS SAM開發API Gateway及Lambda | Claudia-Tech Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="author" content="Claudia Wei">
   <meta name="keywords" content="">
@@ -70,31 +70,28 @@
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
 <meta name="generator" content="Hexo 5.4.0"></head>
 <body>
-<div id="page">
+<div class="single">
 
-<div id="lx-aside" style="background-image: url(//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/images/cover.jpeg)">
+<div id="page">
+<div id="lx-aside" style="background-image: url(//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/images/post_cover.jpeg)" data-stellar-background-ratio="0.5">
   <div class="overlay">
-  <div class="featured">
+  <div class="page-title">
     <div class="avatar"><a href="/"><img src="/images/avatar.jpeg"></a></div>
-    <span>Claudia Wei</span>
-    <h1>Claudia-Tech Blog</h1>
+    <span>2021-06-30</span>
+    <h2>運用AWS SAM開發A...</h2>
     
     <div class="social-links">
     <a href="https://github.com/ClaudiaWei" target="_blank"><i class="fa fa-github fa-fw"></i></a>
     <a href="mailto:claudia84012345@gmail.com" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+</div></div>
 </div>
-  </div>
-  </div>
 </div>
 
 <div id="lx-main-content">
   <div class="lx-post">
-
-  <div class="lx-entry padding">
-    <div>
-      <h2 class="title"><a href="/2021/06/30/%E9%81%8B%E7%94%A8AWS-SAM%E9%96%8B%E7%99%BCAPI-Gateway%E5%8F%8ALambda/">運用AWS SAM開發API Gateway及Lambda</a></h2>
-      <span class="lx-post-detail"><i class="fa fa-calendar-o"></i> 2021-06-30</span>
-      <p><h2 id="本篇文章重點："><a href="#本篇文章重點：" class="headerlink" title="本篇文章重點："></a>本篇文章重點：</h2><ol>
+    <div class="lx-entry padding">
+      <div>
+        <h2 id="本篇文章重點："><a href="#本篇文章重點：" class="headerlink" title="本篇文章重點："></a>本篇文章重點：</h2><ol>
 <li>使用API Gateway Authorizer透過Cognito實現身份認證</li>
 <li>運用AWS Sam開發API Gateway及Lambda</li>
 <li>運用Sam local invoke做地端測試及Sam deploy實現自動化部署</li>
@@ -166,157 +163,41 @@
 <li><p>其他如文中連結</p>
 </li>
 </ol>
-</p>
-      <div class="post-button"><a class="btn" href="/2021/06/30/%E9%81%8B%E7%94%A8AWS-SAM%E9%96%8B%E7%99%BCAPI-Gateway%E5%8F%8ALambda/" rel="noopener"><i class="fa fa-angle-double-right fa-fw"></i>Read More</a></div>
+
+      </div>
     </div>
   </div>
-  <div class="lx-entry padding">
-    <div>
-      <h2 class="title"><a href="/2021/06/27/IAC%E7%B5%90%E5%90%88CICD%E4%B9%8B%E6%97%85/">IAC結合CICD之旅</a></h2>
-      <span class="lx-post-detail"><i class="fa fa-calendar-o"></i> 2021-06-27</span>
-      <p><h2 id="本篇文章重點："><a href="#本篇文章重點：" class="headerlink" title="本篇文章重點："></a>本篇文章重點：</h2><ol>
-<li>Terrafor簡介及操作</li>
-<li>Terraform結合Jenkins及Bitbucket Pipeline</li>
-</ol>
-<h2 id="Terraform-簡述"><a href="#Terraform-簡述" class="headerlink" title="Terraform 簡述"></a>Terraform 簡述</h2><ul>
-<li>Terraform 是個管理雲端基礎架構的工具, binary file, 使用HCL語言, 底層是Golang</li>
-<li>Terraform 支援多個平台, 如：AWS, Azure, GCP, Atlas…等</li>
-<li>於<a target="_blank" rel="noopener" href="https://www.terraform.io/downloads.html">此</a>下載解壓縮, 放入指定路徑即可使用</li>
-</ul>
-<h2 id="Terraform-特點"><a href="#Terraform-特點" class="headerlink" title="Terraform 特點"></a>Terraform 特點</h2><ul>
-<li>Infrastructure As Code: 使用程式部署架構</li>
-<li>Execution Plans: terraform plan 指令可以觀察到哪些資源有變動, 因此可以避免意外產生</li>
-<li>Resource Graph: 資源是有相依性的, 會知道哪些服務需要被先建立</li>
-<li>Change Automation: terraform apply 指令可以知道terraform實際以什麼順序更改哪些資源 </li>
-</ul>
-<h3 id="Terraform-家族：Terratest-Terragrunt"><a href="#Terraform-家族：Terratest-Terragrunt" class="headerlink" title="Terraform 家族：Terratest, Terragrunt"></a>Terraform 家族：Terratest, Terragrunt</h3><ul>
-<li>Terragrunt是Terraform 的一個輕量級的封裝, 讓每個環境都只需要訂參數, 沿用一樣的設定, 減少複製貼上產生錯誤的機率。也強制降低每個環境間的差異。</li>
-<li>Terratest（Go編寫）是Gruntwork 開發的開源測試工具可以雲端系統 deploy 到一個全新的環境, 再自動跑寫好的 test case, 像是 API test, ssh 連線等等, 測完之後再自動把整個測試系統砍掉。</li>
-</ul>
-<h2 id="Terraform-檔案架構"><a href="#Terraform-檔案架構" class="headerlink" title="Terraform 檔案架構"></a>Terraform 檔案架構</h2><ul>
-<li><p>tf：執行架構的內容, 存取變數</p>
-</li>
-<li><p>tfvars：存取變數(根據環境)</p>
-<p>  改變數</p>
-<ol>
-<li><p>terrafrom apply -var=”instanceTenancy=abc”</p>
-</li>
-<li><p>TF_VAR_instanceTenancy=abc terrafrom apply</p>
-</li>
-<li><p>terrafrom apply -var-file=”staging/my.tfvars”</p>
-</li>
-</ol>
-</li>
-<li><p>tfstate（執行terraform init）：terraform 管理的 resource  (存在s3)</p>
-<p>  由於 Terraform 預設將所有創建的雲端資源狀態存成 terraform.tfstate 的檔案, 當有更動的時候會去這裡讀取狀態, 然而當多人合作時, 不同人電腦上的狀態檔是會不一致的, 因此 Terraform 提供了 Remote State 的機制, 讓 state 檔案統一放在一個地方。</p>
-</li>
-<li><p>resource vs module vs data</p>
-<ul>
-<li><p>resource:一般常用</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">resource 雲端資源名稱 自定義的名稱 &#123;</span><br><span class="line"></span><br><span class="line">屬性 = 值</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>module: 封裝資源（別人已經寫好的一些架構 例如vpc 就不需要去重複寫resource</p>
-</li>
-<li><p>data: 用於查找既有資源</p>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="Terraform-執行步驟"><a href="#Terraform-執行步驟" class="headerlink" title="Terraform 執行步驟"></a>Terraform 執行步驟</h2><ul>
-<li><p><strong>terraform init</strong></p>
-<p>  在這個指令中, Terraform 會去下載需要的套件, 像是 AWS plugin</p>
-<p>  <img src=""></p>
-</li>
-<li><p><strong>terraform validate</strong></p>
-<p>  檢查是否存在語法錯誤</p>
-<p>  <img src=""></p>
-</li>
-<li><p><strong>terraform plan -out xxx.plan</strong></p>
-<p>  可以讓你在實際執行之前觀察 Terraform 將做哪些哪些改變, 這是為了防止修改到不應該修改的東西, 或是有不是預期的結果</p>
-<p>  (known after apply 是表示在資源建立後才會知道的值)</p>
-<p>  (前面符號的意義)：+/-是指新增或刪減值, ~是指變更值</p>
-</li>
-</ul>
-<pre><code>![]()
-</code></pre>
-<ul>
-<li><p><strong>terraform apply xxx.plan</strong></p>
-<p>  實際去創建或改變雲端架構</p>
-<p>  <img src="/./public/images/terraform/terraform-apply.png" alt="terraform"></p>
-</li>
-<li><p><strong>terraform show</strong></p>
-<p>  資源建立的內容</p>
-<p>  <img src=""></p>
-</li>
-<li><p><strong>terraform destroy</strong></p>
-<p>  清除所有的資源</p>
-<p>  <img src=""></p>
-<p>  <img src=""></p>
-<p>  <img src=""></p>
-</li>
-</ul>
-<h3 id="Terraform-with-Jenkins-and-Bitbucket"><a href="#Terraform-with-Jenkins-and-Bitbucket" class="headerlink" title="Terraform with Jenkins and Bitbucket"></a>Terraform with Jenkins and Bitbucket</h3><p>因專案上希望程式上版到bitbucket後可以自動執行terraform檔案部署雲端資源, 因此結合專案中已建立的Jenkins及Bitbucket Pipeline<br><img src=""></p>
-<ul>
-<li><p>使用Bitbucket plugin讓Bitbucket觸發Jenkins執行Pipeline</p>
-<ul>
-<li><p>Bitbucket url 需要新增 <a target="_blank" rel="noopener" href="https://plugins.jenkins.io/bitbucket/">Bitbucket plugin</a></p>
-</li>
-<li><p>透過webhook request logs 可以看到詳細的資訊</p>
-</li>
-<li><p><strong>經驗分享</strong>: 開發過程中曾經出現status 503, 後來發現是因為VPC security group沒有設定到 <a target="_blank" rel="noopener" href="https://community.atlassian.com/t5/Bitbucket-questions/Bitbucket-Webhook-to-Jenkins-returns-503/qaq-p/971556">bitbucket ingress rule</a></p>
-</li>
-<li><p>因此新增相關的<a target="_blank" rel="noopener" href="https://support.atlassian.com/bitbucket-cloud/docs/what-are-the-bitbucket-cloud-ip-addresses-i-should-use-to-configure-my-corporate-firewall/?_ga=2.43109797.1827149579.1546449118-56698773.1545853230&_gac=1.184167954.1546193145.EAIaIQobChMIwryjrpHI3wIVBC1pCh3gZAMOEAAYASAAEgK_YvD_BwE">IP addresses</a> in the alb security group</p>
-<p>  <img src=""></p>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>Jenkins</li>
-</ul>
-<p>install terraform plugin, add bitbucket credential and aws credential</p>
-<ul>
-<li><p>Crete Jenkins freestyle</p>
-</li>
-<li><p>SCM: 增加repo URL 和 credentials</p>
-<p>  <img src=""></p>
-</li>
-<li><p>建置觸發程序</p>
-<p>  <img src=""></p>
-</li>
-<li><p>建置環境-Bindings</p>
-<p>  <a target="_blank" rel="noopener" href="https://plugins.jenkins.io/credentials-binding/">Credentials Binding plugin</a></p>
-<p>  <img src=""></p>
-</li>
-<li><p>建置-執行shell</p>
-<p>  <img src=""></p>
-</li>
-</ul>
-<h2 id="Terraform-with-Bitbucket-pipeline"><a href="#Terraform-with-Bitbucket-pipeline" class="headerlink" title="Terraform with Bitbucket pipeline"></a>Terraform with Bitbucket pipeline</h2><p>若沒有建置Jenkins, 也可以就Terraform結合Bitbucket pipeline實現自動部署</p>
-<blockquote>
-<p>Bitbucket pipeline 本身就有worker跑CICD流程, 是docker image 形式, 可以管理變數</p>
-</blockquote>
-<ul>
-<li><p>新增repo後, 建立Deployment (要註明deployment envi)</p>
-<p>  <img src=""></p>
-</li>
-<li><p>設定test environment並且新增aws access key &amp; aws secret key</p>
-<p>  <img src=""></p>
-</li>
-<li><p>push terraform file to bitbucket</p>
-<p>  <img src=""></p>
-</li>
-</ul>
-<h3 id="參考資料："><a href="#參考資料：" class="headerlink" title="參考資料："></a>參考資料：</h3><ol>
-<li><a target="_blank" rel="noopener" href="https://github.com/hashicorp/terraform">Terraform Github</a></li>
-<li><a target="_blank" rel="noopener" href="https://dzone.com/articles/immutable-infrastructure-cicd-using-hashicorp-terr">CI/CD Using Hashicorp Terraform and Jenkins</a></li>
-</ol>
-</p>
-      <div class="post-button"><a class="btn" href="/2021/06/27/IAC%E7%B5%90%E5%90%88CICD%E4%B9%8B%E6%97%85/" rel="noopener"><i class="fa fa-angle-double-right fa-fw"></i>Read More</a></div>
-    </div>
-  </div>
+</div>
+<div class="lx-navigation">
+	<div class="lx-cover prev lx-cover-sm" style="background-image: url(//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/images/footer-l.jpeg)">
+		<div class="overlay"></div>
+		<a class="copy" href="#">
+			<div class="display-t">
+				<div class="display-tc">
+					<div>
+						<span>Next</span>
+						<h3>No newer post</h3>
+					</div>
+				</div>
+			</div>
+		</a>
+	</div>
+        <div class="lx-cover next lx-cover-sm" style="background-image: url(//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/images/footer-r.jpeg)">
+		<div class="overlay"></div>
+		<a class="copy" href="/2021/06/27/IAC%E7%B5%90%E5%90%88CICD%E4%B9%8B%E6%97%85/">
+			<div class="display-t">
+				<div class="display-tc">
+					<div>
+						<span>Prev</span>
+						<h3>IAC結合CI...</h3>
+					</div>
+				</div>
+			</div>
+		</a>
+	</div>
+</div>
 
-
-
+</div>
 
 <footer>
   <div>
@@ -324,8 +205,6 @@
   </div>
 </footer>
 
-  </div>
-</div>
 </div>
 
 <button class="hamburger hamburger--arrow-r" type="button">
